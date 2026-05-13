@@ -1,5 +1,8 @@
 import Link from "next/link";
 
+import { WhatsAppButton } from "@/components/public/WhatsAppButton";
+import { businessData } from "@/lib/business-data";
+
 const navItems = [
   { href: "/", label: "Inicio" },
   { href: "/catalogo", label: "Catálogo" },
@@ -10,10 +13,15 @@ const navItems = [
 export function PublicHeader() {
   return (
     <header className="border-b border-veterinarian-blueSoft bg-white">
-      <div className="container-main flex flex-col gap-4 py-4 sm:flex-row sm:items-center sm:justify-between">
-        <Link href="/" className="text-xl font-bold text-veterinarian-violet">
-          Veterinaria Del Fabro
-        </Link>
+      <div className="container-main flex flex-col gap-4 py-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <Link href="/" className="text-xl font-bold text-veterinarian-violet">
+            {businessData.name}
+          </Link>
+          <WhatsAppButton message="Hola, quería hacer una consulta a Veterinaria Del Fabro." className="w-full sm:w-auto">
+            WhatsApp
+          </WhatsAppButton>
+        </div>
         <nav className="flex flex-wrap gap-2">
           {navItems.map((item) => (
             <Link

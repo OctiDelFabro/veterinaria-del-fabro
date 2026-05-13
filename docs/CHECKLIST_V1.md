@@ -17,7 +17,7 @@
 - [x] README enlaza documentación
 
 ## Vista pública
-- [ ] Inicio implementado
+- [x] Inicio implementado
 - [ ] Catálogo implementado
 - [ ] Buscador de productos
 - [ ] Filtros por categoría
@@ -29,8 +29,8 @@
 - [ ] Tarjetas simples de servicios
 - [ ] Detalle de servicio
 - [ ] Botón genérico de WhatsApp en servicios
-- [ ] Contacto implementado
-- [ ] Mapa o enlace de Google Maps
+- [x] Contacto implementado
+- [x] Mapa o enlace de Google Maps
 
 ## Vista administrativa
 - [ ] Login visual implementado
@@ -54,9 +54,9 @@
 ## Integraciones
 - [ ] Supabase Auth
 - [ ] Supabase Storage
-- [ ] WhatsApp links
-- [ ] Instagram link
-- [ ] Google Maps link
+- [x] WhatsApp links
+- [x] Instagram link
+- [x] Google Maps link
 
 ## QA
 - [ ] npm install
