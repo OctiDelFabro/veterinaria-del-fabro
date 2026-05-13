@@ -30,3 +30,15 @@ npm run lint
 - [SDD](./docs/SDD.md)
 - [Checklist V1](./docs/CHECKLIST_V1.md)
 - [Agent instructions](./AGENTS.md)
+
+
+## Database commands
+```bash
+npm run db:generate
+npm run db:push
+npm run db:migrate
+npm run db:seed
+npm run db:studio
+```
+
+Para usar Prisma se debe crear un archivo `.env` local basado en `.env.example` y configurar `DATABASE_URL`.
