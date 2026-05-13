@@ -24,3 +24,9 @@ npm run lint
 - Layout público y rutas públicas placeholder.
 - Layout administrativo y rutas privadas placeholder.
 - Estructura inicial para Prisma y Supabase **sin** configuración de base de datos ni auth.
+
+## Project documentation
+
+- [SDD](./docs/SDD.md)
+- [Checklist V1](./docs/CHECKLIST_V1.md)
+- [Agent instructions](./AGENTS.md)
