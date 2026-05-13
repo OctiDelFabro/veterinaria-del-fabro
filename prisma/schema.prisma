@@ -1,4 +1,3 @@
-// Placeholder schema Prisma. Base de datos sin configurar todavía.
 generator client {
   provider = "prisma-client-js"
 }
@@ -6,4 +5,91 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id        String     @id @default(uuid())
+  nombre    String     @unique
+  slug      String     @unique
+  visible   Boolean    @default(true)
+  activo    Boolean    @default(true)
+
+  productos Producto[]
+
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+
+  @@map("categorias")
+}
+
+model Producto {
+  id               String    @id @default(uuid())
+  nombre           String
+  slug             String    @unique
+  descripcionBreve String?
+  stock            Int       @default(0)
+  imagenUrl        String?
+  visible          Boolean   @default(true)
+  activo           Boolean   @default(true)
+
+  categoriaId      String
+  categoria        Categoria @relation(fields: [categoriaId], references: [id])
+
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  @@index([categoriaId])
+  @@index([visible, activo])
+  @@map("productos")
+}
+
+model Servicio {
+  id               String   @id @default(uuid())
+  nombre           String   @unique
+  slug             String   @unique
+  descripcionLarga String
+  visible          Boolean  @default(true)
+  activo           Boolean  @default(true)
+
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+
+  @@index([visible, activo])
+  @@map("servicios")
+}
+
+model ConfiguracionNegocio {
+  id                    String   @id @default(uuid())
+
+  nombreNegocio         String
+  direccion             String
+
+  whatsappVisible       String
+  whatsappInternacional String
+
+  telefono              String?
+  instagramUsuario      String?
+  horarios              String
+
+  googleMapsUrl         String?
+
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  @@map("configuracion_negocio")
+}
+
+model AdminProfile {
+  id             String   @id @default(uuid())
+
+  supabaseUserId String   @unique
+  nombre         String
+  email          String   @unique
+  rol            String   @default("admin")
+  activo         Boolean  @default(true)
+
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  @@map("admin_profiles")
 }

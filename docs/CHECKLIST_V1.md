@@ -43,13 +43,13 @@
 - [ ] Configuración del negocio
 
 ## Base de datos
-- [ ] Prisma configurado
-- [ ] Modelo Categoria
-- [ ] Modelo Producto
-- [ ] Modelo Servicio
-- [ ] Modelo ConfiguracionNegocio
-- [ ] Modelo AdminProfile
-- [ ] Seed inicial
+- [x] Prisma configurado
+- [x] Modelo Categoria
+- [x] Modelo Producto
+- [x] Modelo Servicio
+- [x] Modelo ConfiguracionNegocio
+- [x] Modelo AdminProfile
+- [x] Seed inicial
 
 ## Integraciones
 - [ ] Supabase Auth
