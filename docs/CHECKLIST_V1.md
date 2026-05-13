@@ -11,10 +11,10 @@
 - [x] Login separado del layout admin
 
 ## Documentación
-- [ ] AGENTS.md creado
-- [ ] SDD documentado
-- [ ] Checklist V1 creado
-- [ ] README enlaza documentación
+- [x] AGENTS.md creado
+- [x] SDD documentado
+- [x] Checklist V1 creado
+- [x] README enlaza documentación
 
 ## Vista pública
 - [ ] Inicio implementado
