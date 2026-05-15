@@ -45,6 +45,7 @@
 Nota: UI inicial de productos implementada con datos mock; pendiente CRUD real.
 Nota: UI inicial de categorías implementada con datos mock; pendiente CRUD real.
 Nota: UI inicial de servicios implementada con datos mock; pendiente CRUD real.
+Nota: UI inicial de configuración del negocio implementada con datos mock; pendiente persistencia real.
 
 ## Base de datos
 - [x] Prisma configurado
