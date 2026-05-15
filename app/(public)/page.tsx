@@ -3,7 +3,8 @@ import Link from "next/link";
 import { InfoCard } from "@/components/public/InfoCard";
 import { SectionHeader } from "@/components/public/SectionHeader";
 import { WhatsAppButton } from "@/components/public/WhatsAppButton";
-import { businessData, initialCategories, initialServices } from "@/lib/business-data";
+import { businessData, initialCategories } from "@/lib/business-data";
+import { mockServices } from "@/lib/mock-services";
 
 const whatsappMessage = "Hola, quería hacer una consulta a Veterinaria Del Fabro.";
 
@@ -44,8 +45,8 @@ export default function HomePage() {
       <section className="space-y-6">
         <SectionHeader title="Servicios clínicos" description="Atención profesional para acompañar cada etapa de tu mascota." />
         <div className="grid gap-4 sm:grid-cols-3">
-          {initialServices.map((service) => (
-            <InfoCard key={service} title={service} description="Atención clínica profesional con enfoque en pequeños animales." />
+          {mockServices.map((service) => (
+            <InfoCard key={service.id} title={service.name} description="Atención clínica profesional con enfoque en pequeños animales." />
           ))}
         </div>
         <Link href="/servicios" className="inline-flex text-sm font-semibold text-veterinarian-violet hover:text-veterinarian-violetDark">

@@ -25,10 +25,10 @@
 - [x] Banda inclinada de stock
 - [x] Detalle de producto
 - [x] WhatsApp en detalle de producto
-- [ ] Servicios implementado
-- [ ] Tarjetas simples de servicios
-- [ ] Detalle de servicio
-- [ ] Botón genérico de WhatsApp en servicios
+- [x] Servicios implementado
+- [x] Tarjetas simples de servicios
+- [x] Detalle de servicio
+- [x] Botón genérico de WhatsApp en servicios
 - [x] Contacto implementado
 - [x] Mapa o enlace de Google Maps
 
