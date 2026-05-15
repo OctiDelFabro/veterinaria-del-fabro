@@ -1,17 +1,7 @@
 import { ProductCatalog } from "@/components/public/ProductCatalog";
 import { WhatsAppButton } from "@/components/public/WhatsAppButton";
-import { mockProducts, ProductCategory } from "@/lib/mock-products";
-
-const initialCategories: readonly ProductCategory[] = [
-  "Alimentos",
-  "Medicamentos",
-  "Pipetas y Antiparasitarios",
-  "Accesorios",
-  "Higiene",
-  "Juguetes",
-  "Petshop",
-  "Otros"
-] as const;
+import { initialCategories } from "@/lib/business-data";
+import { mockProducts } from "@/lib/mock-products";
 
 export default function CatalogoPage() {
   return (
