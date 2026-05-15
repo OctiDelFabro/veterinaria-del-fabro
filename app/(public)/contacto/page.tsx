@@ -1,11 +1,16 @@
 import { InfoCard } from "@/components/public/InfoCard";
 import { SectionHeader } from "@/components/public/SectionHeader";
-import { WhatsAppButton } from "@/components/public/WhatsAppButton";
-import { businessData } from "@/lib/business-data";
+import { getPublicBusinessSettings } from "@/lib/business-settings";
 
 const whatsappMessage = "Hola, quería hacer una consulta a Veterinaria Del Fabro.";
 
-export default function ContactoPage() {
+export const dynamic = "force-dynamic";
+
+export default async function ContactoPage() {
+  const businessSettings = await getPublicBusinessSettings();
+
+  const whatsappHref = `https://wa.me/${businessSettings.whatsappInternational}?text=${encodeURIComponent(whatsappMessage)}`;
+
   return (
     <div className="space-y-8 py-10">
       <SectionHeader
@@ -14,15 +19,15 @@ export default function ContactoPage() {
       />
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <InfoCard title="Dirección" description={businessData.address} />
+        <InfoCard title="Dirección" description={businessSettings.address} />
         <InfoCard
           title="Comunicación"
-          description={`WhatsApp: ${businessData.whatsappVisible} · Teléfono: ${businessData.phone} · Instagram: @${businessData.instagramUser}`}
+          description={`WhatsApp: ${businessSettings.whatsappVisible} · Teléfono: ${businessSettings.phone} · Instagram: @${businessSettings.instagramUser}`}
         />
-        <InfoCard title="Horarios" description={businessData.hours.join(" · ")} />
+        <InfoCard title="Horarios" description={businessSettings.hours.join(" · ")} />
         <InfoCard title="Ubicación" description="Encontranos fácilmente desde Google Maps.">
           <a
-            href={businessData.mapsSearchUrl}
+            href={businessSettings.googleMapsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex rounded-md border border-veterinarian-blue px-3 py-2 text-sm font-semibold text-veterinarian-blue hover:bg-veterinarian-blueSoft"
@@ -33,9 +38,16 @@ export default function ContactoPage() {
       </div>
 
       <div className="flex flex-col gap-3 sm:flex-row">
-        <WhatsAppButton message={whatsappMessage} />
         <a
-          href={businessData.instagramUrl}
+          href={whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center rounded-md bg-veterinarian-violet px-4 py-2 text-sm font-semibold text-white hover:bg-veterinarian-violetDark"
+        >
+          Consultar por WhatsApp
+        </a>
+        <a
+          href={businessSettings.instagramUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-md border border-veterinarian-blue px-4 py-2 text-sm font-semibold text-veterinarian-blue hover:bg-veterinarian-blueSoft"
@@ -43,7 +55,7 @@ export default function ContactoPage() {
           Ver Instagram
         </a>
         <a
-          href={businessData.mapsSearchUrl}
+          href={businessSettings.googleMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center justify-center rounded-md border border-veterinarian-blue px-4 py-2 text-sm font-semibold text-veterinarian-blue hover:bg-veterinarian-blueSoft"
