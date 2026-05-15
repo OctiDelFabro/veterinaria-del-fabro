@@ -18,13 +18,13 @@
 
 ## Vista pública
 - [x] Inicio implementado
-- [ ] Catálogo implementado
-- [ ] Buscador de productos
-- [ ] Filtros por categoría
-- [ ] Tarjetas de producto simples
-- [ ] Banda inclinada de stock
-- [ ] Detalle de producto
-- [ ] WhatsApp en detalle de producto
+- [x] Catálogo implementado
+- [x] Buscador de productos
+- [x] Filtros por categoría
+- [x] Tarjetas de producto simples
+- [x] Banda inclinada de stock
+- [x] Detalle de producto
+- [x] WhatsApp en detalle de producto
 - [ ] Servicios implementado
 - [ ] Tarjetas simples de servicios
 - [ ] Detalle de servicio
