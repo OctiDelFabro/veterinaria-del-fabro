@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { AdminCategory } from "@/lib/mock-admin-categories";
+import type { AdminCategory } from "@/lib/categories";
 
 type AdminCategoryFormProps = {
   initialData?: AdminCategory;

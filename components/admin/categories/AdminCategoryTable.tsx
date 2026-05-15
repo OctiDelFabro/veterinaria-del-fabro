@@ -1,5 +1,5 @@
 import { AdminCategoryStatusBadge } from "@/components/admin/categories/AdminCategoryStatusBadge";
-import type { AdminCategory } from "@/lib/mock-admin-categories";
+import type { AdminCategory } from "@/lib/categories";
 
 type AdminCategoryTableProps = {
   categories: AdminCategory[];
