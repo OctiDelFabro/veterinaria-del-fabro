@@ -42,3 +42,16 @@ npm run db:studio
 ```
 
 Para usar Prisma se debe crear un archivo `.env` local basado en `.env.example` y configurar `DATABASE_URL`.
+
+## Local database setup
+
+Para conectar Prisma con Supabase localmente se debe crear un archivo `.env` basado en `.env.example` y configurar `DATABASE_URL`.
+
+Comandos útiles:
+
+```bash
+npm run db:generate
+npm run db:push
+npm run db:seed
+npm run db:studio
+```

@@ -56,6 +56,8 @@ Nota: UI inicial de configuración del negocio implementada con datos mock; pend
 - [x] Modelo AdminProfile
 - [x] Seed inicial
 
+Nota: Contacto público conectado a configuracion_negocio mediante Prisma con fallback estático.
+
 ## Integraciones
 - [ ] Supabase Auth
 - [ ] Supabase Storage
