@@ -43,6 +43,7 @@
 - [ ] Configuración del negocio
 
 Nota: UI inicial de productos implementada con datos mock; pendiente CRUD real.
+Nota: UI inicial de categorías implementada con datos mock; pendiente CRUD real.
 
 ## Base de datos
 - [x] Prisma configurado
