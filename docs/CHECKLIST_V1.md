@@ -33,9 +33,9 @@
 - [x] Mapa o enlace de Google Maps
 
 ## Vista administrativa
-- [ ] Login visual implementado
+- [x] Login visual implementado
 - [ ] Protección de rutas admin
-- [ ] Panel admin implementado
+- [x] Panel admin implementado
 - [ ] Gestión de productos
 - [ ] Formulario de producto
 - [ ] Gestión de categorías
