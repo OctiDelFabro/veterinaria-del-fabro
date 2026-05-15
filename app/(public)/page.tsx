@@ -3,12 +3,14 @@ import Link from "next/link";
 import { InfoCard } from "@/components/public/InfoCard";
 import { SectionHeader } from "@/components/public/SectionHeader";
 import { WhatsAppButton } from "@/components/public/WhatsAppButton";
-import { businessData, initialCategories } from "@/lib/business-data";
+import { businessData } from "@/lib/business-data";
+import { getPublicCategories } from "@/lib/categories";
 import { mockServices } from "@/lib/mock-services";
 
 const whatsappMessage = "Hola, quería hacer una consulta a Veterinaria Del Fabro.";
 
-export default function HomePage() {
+export default async function HomePage() {
+  const categories = await getPublicCategories();
   return (
     <div className="space-y-12 py-10">
       <section className="rounded-2xl border border-veterinarian-blueSoft bg-white p-6 shadow-sm sm:p-10">
@@ -31,9 +33,9 @@ export default function HomePage() {
       <section className="space-y-6">
         <SectionHeader title="Productos para tu mascota" description="Explorá las categorías destacadas y encontrá todo para el cuidado diario." />
         <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-          {initialCategories.map((category) => (
-            <div key={category} className="rounded-lg border border-veterinarian-blueSoft bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm">
-              {category}
+          {categories.map((category) => (
+            <div key={category.name} className="rounded-lg border border-veterinarian-blueSoft bg-white px-4 py-3 text-sm font-medium text-slate-700 shadow-sm">
+              {category.name}
             </div>
           ))}
         </div>

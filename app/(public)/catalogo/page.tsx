@@ -1,9 +1,10 @@
 import { ProductCatalog } from "@/components/public/ProductCatalog";
 import { WhatsAppButton } from "@/components/public/WhatsAppButton";
-import { initialCategories } from "@/lib/business-data";
+import { getPublicCategories } from "@/lib/categories";
 import { mockProducts } from "@/lib/mock-products";
 
-export default function CatalogoPage() {
+export default async function CatalogoPage() {
+  const categories = await getPublicCategories();
   return (
     <section className="container-main py-10 sm:py-12">
       <header className="mb-8 space-y-3">
@@ -13,7 +14,7 @@ export default function CatalogoPage() {
         </p>
       </header>
 
-      <ProductCatalog products={mockProducts} categories={initialCategories} />
+      <ProductCatalog products={mockProducts} categories={categories.map((category) => category.name)} />
 
       <div className="mt-10 rounded-xl border border-blue-100 bg-blue-50 p-6 text-center">
         <p className="text-base font-semibold text-slate-800">¿No encontrás lo que buscás?</p>

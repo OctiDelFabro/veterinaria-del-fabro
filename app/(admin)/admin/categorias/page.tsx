@@ -1,9 +1,10 @@
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminCategoryForm } from "@/components/admin/categories/AdminCategoryForm";
 import { AdminCategoryTable } from "@/components/admin/categories/AdminCategoryTable";
-import { mockAdminCategories } from "@/lib/mock-admin-categories";
+import { getAdminCategories } from "@/lib/categories";
 
-export default function AdminCategoriasPage() {
+export default async function AdminCategoriasPage() {
+  const categories = await getAdminCategories();
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -24,7 +25,7 @@ export default function AdminCategoriasPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">Categorías actuales</h2>
-        <AdminCategoryTable categories={mockAdminCategories} />
+        <AdminCategoryTable categories={categories} />
       </section>
     </div>
   );
