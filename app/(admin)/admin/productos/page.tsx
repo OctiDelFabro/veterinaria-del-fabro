@@ -2,9 +2,11 @@ import Link from "next/link";
 
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminProductTable } from "@/components/admin/products/AdminProductTable";
-import { mockAdminProducts } from "@/lib/mock-admin-products";
+import { getAdminProducts } from "@/lib/products";
 
-export default function AdminProductosPage() {
+export default async function AdminProductosPage() {
+  const products = await getAdminProducts();
+
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -25,7 +27,7 @@ export default function AdminProductosPage() {
         Los cambios todavía no se guardan en base de datos. Esta pantalla es una interfaz inicial.
       </p>
 
-      <AdminProductTable products={mockAdminProducts} />
+      <AdminProductTable products={products} />
     </div>
   );
 }

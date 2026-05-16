@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { AdminProductStatusBadge } from "@/components/admin/products/AdminProductStatusBadge";
-import type { AdminProduct } from "@/lib/mock-admin-products";
+import type { AdminProduct } from "@/lib/products";
 
 type AdminProductTableProps = {
   products: AdminProduct[];
