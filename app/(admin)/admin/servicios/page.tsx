@@ -1,9 +1,9 @@
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminServiceForm } from "@/components/admin/services/AdminServiceForm";
 import { AdminServiceTable } from "@/components/admin/services/AdminServiceTable";
-import { mockAdminServices } from "@/lib/mock-admin-services";
+import { getAdminServices } from "@/lib/services";
 
-export default function AdminServiciosPage() {
+export default async function AdminServiciosPage() {
   return (
     <div className="space-y-6">
       <AdminPageHeader
@@ -24,7 +24,7 @@ export default function AdminServiciosPage() {
 
       <section className="space-y-3">
         <h2 className="text-lg font-semibold text-slate-900">Servicios actuales</h2>
-        <AdminServiceTable services={mockAdminServices} />
+        <AdminServiceTable services={await getAdminServices()} />
       </section>
     </div>
   );

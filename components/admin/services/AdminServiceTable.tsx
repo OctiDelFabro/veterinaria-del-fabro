@@ -1,5 +1,5 @@
 import { AdminServiceStatusBadge } from "@/components/admin/services/AdminServiceStatusBadge";
-import type { AdminService } from "@/lib/mock-admin-services";
+import type { AdminService } from "@/lib/services";
 
 type AdminServiceTableProps = {
   services: AdminService[];
