@@ -2,13 +2,13 @@
 
 import { useMemo, useState } from "react";
 
-import { MockProduct } from "@/lib/mock-products";
+import { PublicProduct } from "@/lib/products";
 
 import { WhatsAppButton } from "./WhatsAppButton";
 import { ProductCard } from "./ProductCard";
 
 type ProductCatalogProps = {
-  products: MockProduct[];
+  products: PublicProduct[];
   categories: readonly string[];
 };
 

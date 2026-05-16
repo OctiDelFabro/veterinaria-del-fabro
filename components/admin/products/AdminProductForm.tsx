@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { AdminProduct } from "@/lib/mock-admin-products";
+import type { AdminProduct } from "@/lib/products";
 
 type AdminProductFormProps = {
   mode: "create" | "edit";

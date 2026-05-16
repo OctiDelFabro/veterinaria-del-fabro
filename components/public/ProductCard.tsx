@@ -1,11 +1,11 @@
 import Link from "next/link";
 
-import { MockProduct } from "@/lib/mock-products";
+import { PublicProduct } from "@/lib/products";
 
 import { StockRibbon } from "./StockRibbon";
 
 type ProductCardProps = {
-  product: MockProduct;
+  product: PublicProduct;
 };
 
 export function ProductCard({ product }: ProductCardProps) {

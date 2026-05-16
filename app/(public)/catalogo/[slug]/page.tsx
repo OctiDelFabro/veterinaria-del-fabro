@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { WhatsAppButton } from "@/components/public/WhatsAppButton";
-import { getProductBySlug } from "@/lib/mock-products";
+import { getPublicProductBySlug } from "@/lib/products";
 
 type CatalogDetailProps = {
   params: Promise<{ slug: string }>;
@@ -9,7 +9,7 @@ type CatalogDetailProps = {
 
 export default async function CatalogoDetallePage({ params }: CatalogDetailProps) {
   const { slug } = await params;
-  const product = getProductBySlug(slug);
+  const product = await getPublicProductBySlug(slug);
 
   if (!product) {
     return (
