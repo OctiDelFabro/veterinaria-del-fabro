@@ -1,5 +1,7 @@
 import Link from "next/link";
 
+import { logoutAdmin } from "@/app/(admin)/admin/actions";
+
 const adminLinks = [
   { href: "/admin", label: "Panel" },
   { href: "/admin/productos", label: "Productos" },
@@ -29,13 +31,14 @@ export function AdminSidebar() {
       </nav>
 
       <div className="p-4 pt-2">
-        <button
-          type="button"
-          disabled
-          className="w-full cursor-not-allowed rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-400"
-        >
-          Cerrar sesión
-        </button>
+        <form action={logoutAdmin}>
+          <button
+            type="submit"
+            className="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:border-veterinarian-blueSoft hover:text-veterinarian-violetDark"
+          >
+            Cerrar sesión
+          </button>
+        </form>
       </div>
     </aside>
   );

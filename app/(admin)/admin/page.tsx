@@ -17,6 +17,8 @@ export default function AdminHomePage() {
         <AdminStatCard title="Estado del sitio" value="Vista pública activa" />
       </section>
 
+      <p className="rounded-lg border border-veterinarian-blueSoft/70 bg-veterinarian-blueSoft/20 px-4 py-3 text-sm text-veterinarian-violetDark">Sesión administrativa activa.</p>
+
       <section className="space-y-4">
         <h2 className="text-lg font-semibold text-veterinarian-violetDark">Accesos rápidos</h2>
         <div className="grid gap-4 md:grid-cols-2">
