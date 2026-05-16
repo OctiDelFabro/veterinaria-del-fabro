@@ -5,12 +5,13 @@ import { SectionHeader } from "@/components/public/SectionHeader";
 import { WhatsAppButton } from "@/components/public/WhatsAppButton";
 import { businessData } from "@/lib/business-data";
 import { getPublicCategories } from "@/lib/categories";
-import { mockServices } from "@/lib/mock-services";
+import { getPublicServices } from "@/lib/services";
 
 const whatsappMessage = "Hola, quería hacer una consulta a Veterinaria Del Fabro.";
 
 export default async function HomePage() {
   const categories = await getPublicCategories();
+  const services = await getPublicServices();
   return (
     <div className="space-y-12 py-10">
       <section className="rounded-2xl border border-veterinarian-blueSoft bg-white p-6 shadow-sm sm:p-10">
@@ -47,7 +48,7 @@ export default async function HomePage() {
       <section className="space-y-6">
         <SectionHeader title="Servicios clínicos" description="Atención profesional para acompañar cada etapa de tu mascota." />
         <div className="grid gap-4 sm:grid-cols-3">
-          {mockServices.map((service) => (
+          {services.map((service) => (
             <InfoCard key={service.id} title={service.name} description="Atención clínica profesional con enfoque en pequeños animales." />
           ))}
         </div>

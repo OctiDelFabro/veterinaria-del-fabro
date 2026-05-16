@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { WhatsAppButton } from "@/components/public/WhatsAppButton";
-import { getServiceBySlug } from "@/lib/mock-services";
+import { getPublicServiceBySlug } from "@/lib/services";
 
 type ServiceDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -19,7 +19,7 @@ function getWhatsappMessage(slug: string, serviceName: string) {
 
 export default async function ServicioDetallePage({ params }: ServiceDetailPageProps) {
   const { slug } = await params;
-  const service = getServiceBySlug(slug);
+  const service = await getPublicServiceBySlug(slug);
 
   if (!service) {
     return (

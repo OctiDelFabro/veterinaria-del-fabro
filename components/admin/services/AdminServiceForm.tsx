@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import type { AdminService } from "@/lib/mock-admin-services";
+import type { AdminService } from "@/lib/services";
 
 type AdminServiceFormProps = {
   initialData?: AdminService;

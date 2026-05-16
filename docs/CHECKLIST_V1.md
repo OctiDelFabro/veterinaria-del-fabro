@@ -58,6 +58,7 @@ Nota: UI inicial de configuración del negocio implementada con datos mock; pend
 
 Nota: Contacto público conectado a configuracion_negocio mediante Prisma con fallback estático.
 Nota: Categorías públicas y administrativas conectadas a Prisma con fallback estático.
+Nota: Servicios públicos y administrativos conectados a Prisma con fallback estático.
 
 ## Integraciones
 - [ ] Supabase Auth
