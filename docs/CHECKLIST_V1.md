@@ -34,7 +34,7 @@
 
 ## Vista administrativa
 - [x] Login visual implementado
-- [ ] Protección de rutas admin
+- [x] Protección de rutas admin
 - [x] Panel admin implementado
 - [ ] Gestión de productos
 - [ ] Formulario de producto
@@ -62,7 +62,7 @@ Nota: Servicios públicos y administrativos conectados a Prisma con fallback est
 Nota: Productos públicos y administrativos conectados a Prisma con fallback estático.
 
 ## Integraciones
-- [ ] Supabase Auth
+- [x] Supabase Auth
 - [ ] Supabase Storage
 - [x] WhatsApp links
 - [x] Instagram link
@@ -76,3 +76,5 @@ Nota: Productos públicos y administrativos conectados a Prisma con fallback est
 - [ ] Revisión de rutas públicas
 - [ ] Revisión de rutas admin
 - [ ] Revisión visual general
+
+Nota: Rutas /admin protegidas con Supabase Auth y lista ADMIN_EMAILS; CRUD real pendiente.

@@ -25,6 +25,23 @@ npm run lint
 - Layout administrativo y rutas privadas placeholder.
 - Estructura inicial para Prisma y Supabase **sin** configuración de base de datos ni auth.
 
+
+## Admin authentication setup
+
+Variables necesarias:
+
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `ADMIN_EMAILS`
+
+Pasos:
+1. Crear usuario en Supabase Authentication.
+2. Agregar su email a `ADMIN_EMAILS`.
+3. Ejecutar `npm run dev`.
+4. Entrar a `/admin/login`.
+
+No usar `service_role` en frontend ni en variables públicas.
+
 ## Project documentation
 
 - [SDD](./docs/SDD.md)
