@@ -1,4 +1,4 @@
-import type { AdminBusinessSettings } from "@/lib/mock-admin-business-settings";
+import type { AdminBusinessSettings } from "@/lib/admin-business-settings";
 
 type AdminBusinessPreviewCardProps = {
   settings: AdminBusinessSettings;

@@ -40,12 +40,12 @@
 - [ ] Formulario de producto
 - [ ] Gestión de categorías
 - [ ] Gestión de servicios
-- [ ] Configuración del negocio
+- [x] Configuración del negocio
 
 Nota: UI inicial de productos implementada con datos mock; pendiente CRUD real.
 Nota: UI inicial de categorías implementada con datos mock; pendiente CRUD real.
 Nota: UI inicial de servicios implementada con datos mock; pendiente CRUD real.
-Nota: UI inicial de configuración del negocio implementada con datos mock; pendiente persistencia real.
+Nota: Configuración del negocio con persistencia real mediante Prisma; protegida por Supabase Auth.
 
 ## Base de datos
 - [x] Prisma configurado
