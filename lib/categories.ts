@@ -119,3 +119,41 @@ export async function getAdminCategories(): Promise<AdminCategory[]> {
     return fallbackAdminCategories;
   }
 }
+
+
+export async function getAdminCategoryById(id: string): Promise<AdminCategory | undefined> {
+  const fallbackCategory = fallbackAdminCategories.find((category) => category.id === id);
+
+  if (!process.env.DATABASE_URL) {
+    return fallbackCategory;
+  }
+
+  try {
+    const category = await prisma.categoria.findUnique({
+      where: { id },
+      include: {
+        _count: {
+          select: {
+            productos: true,
+          },
+        },
+      },
+    });
+
+    if (!category) {
+      return fallbackCategory;
+    }
+
+    return {
+      id: category.id,
+      name: category.nombre,
+      slug: category.slug,
+      visible: category.visible,
+      active: category.activo,
+      productCount: category._count.productos,
+    };
+  } catch (error) {
+    console.error("Error loading admin category by id", error);
+    return fallbackCategory;
+  }
+}

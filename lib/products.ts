@@ -146,7 +146,7 @@ export async function getPublicProducts(): Promise<PublicProduct[]> {
 
   try {
     const products = await prisma.producto.findMany({
-      where: { visible: true, activo: true },
+      where: { visible: true, activo: true, categoria: { visible: true, activo: true } },
       include: { categoria: true },
       orderBy: { createdAt: "asc" },
     });
@@ -177,7 +177,7 @@ export async function getPublicProductBySlug(slug: string): Promise<PublicProduc
 
   try {
     const product = await prisma.producto.findFirst({
-      where: { slug, visible: true, activo: true },
+      where: { slug, visible: true, activo: true, categoria: { visible: true, activo: true } },
       include: { categoria: true },
     });
 
