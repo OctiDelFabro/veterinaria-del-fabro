@@ -38,12 +38,12 @@
 - [x] Panel admin implementado
 - [ ] Gestión de productos
 - [ ] Formulario de producto
-- [ ] Gestión de categorías
+- [x] Gestión de categorías
 - [ ] Gestión de servicios
 - [x] Configuración del negocio
 
 Nota: UI inicial de productos implementada con datos mock; pendiente CRUD real.
-Nota: UI inicial de categorías implementada con datos mock; pendiente CRUD real.
+Nota: Gestión real de categorías implementada con Prisma: crear, editar, mostrar/ocultar y activar/desactivar. No se implementa eliminación.
 Nota: UI inicial de servicios implementada con datos mock; pendiente CRUD real.
 Nota: Configuración del negocio con persistencia real mediante Prisma; protegida por Supabase Auth.
 
