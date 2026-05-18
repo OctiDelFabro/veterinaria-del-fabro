@@ -25,7 +25,7 @@ export function isAllowedAdminEmail(email?: string | null): boolean {
 
 export async function requireAdminUser(): Promise<void> {
   if (!hasSupabaseServerConfig()) {
-    redirect("/admin/login?status=unauthenticated");
+    redirect("/admin/login?status=config");
   }
 
   const supabase = await createSupabaseServerClient();
