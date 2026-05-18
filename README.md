@@ -42,6 +42,14 @@ Pasos:
 
 No usar `service_role` en frontend ni en variables públicas.
 
+Para que /admin/configuracion pueda guardar cambios:
+
+- `DATABASE_URL` debe estar configurada.
+- El usuario debe iniciar sesión con Supabase Auth.
+- El email del usuario debe estar incluido en `ADMIN_EMAILS`.
+
+No usar `service_role`.
+
 ## Project documentation
 
 - [SDD](./docs/SDD.md)
