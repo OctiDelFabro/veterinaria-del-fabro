@@ -58,6 +58,14 @@ Para gestionar categorías desde el panel admin:
 
 No usar `service_role`.
 
+Para gestionar servicios desde el panel admin:
+
+- `DATABASE_URL` debe estar configurada.
+- El usuario debe iniciar sesión con Supabase Auth.
+- El email debe estar incluido en `ADMIN_EMAILS`.
+
+No usar `service_role`.
+
 ## Project documentation
 
 - [SDD](./docs/SDD.md)

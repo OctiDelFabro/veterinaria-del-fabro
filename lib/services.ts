@@ -126,3 +126,30 @@ export async function getAdminServices(): Promise<AdminService[]> {
     return fallbackAdminServices;
   }
 }
+
+
+export async function getAdminServiceById(id: string): Promise<AdminService | undefined> {
+  if (!process.env.DATABASE_URL) {
+    return fallbackAdminServices.find((service) => service.id === id);
+  }
+
+  try {
+    const service = await prisma.servicio.findUnique({ where: { id } });
+
+    if (!service) {
+      return fallbackAdminServices.find((fallbackService) => fallbackService.id === id);
+    }
+
+    return {
+      id: service.id,
+      name: service.nombre,
+      slug: service.slug,
+      longDescription: service.descripcionLarga,
+      visible: service.visible,
+      active: service.activo,
+    };
+  } catch (error) {
+    console.error("Error loading admin service by id from database:", error);
+    return fallbackAdminServices.find((service) => service.id === id);
+  }
+}
