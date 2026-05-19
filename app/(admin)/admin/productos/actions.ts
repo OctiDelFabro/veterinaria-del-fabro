@@ -25,6 +25,15 @@ function parseProductFormData(formData: FormData) {
   };
 }
 
+function parseStock(rawStock: string): number | null {
+  const stock = Number(rawStock);
+  if (!Number.isInteger(stock) || stock < 0) {
+    return null;
+  }
+
+  return stock;
+}
+
 export async function createProduct(formData: FormData): Promise<void> {
   await requireAdminUser();
   if (!process.env.DATABASE_URL) redirect("/admin/productos?status=config");
@@ -32,8 +41,8 @@ export async function createProduct(formData: FormData): Promise<void> {
   const { name, slug, categoryId, shortDescription, rawStock, visible, active } = parseProductFormData(formData);
   if (!name || !categoryId || !shortDescription || !rawStock) redirect("/admin/productos?status=missing-fields");
 
-  const stock = Number.parseInt(rawStock, 10);
-  if (Number.isNaN(stock) || stock < 0) redirect("/admin/productos?status=invalid-stock");
+  const stock = parseStock(rawStock);
+  if (stock === null) redirect("/admin/productos?status=invalid-stock");
 
   let category;
   try {
@@ -87,8 +96,8 @@ export async function updateProduct(id: string, formData: FormData): Promise<voi
   const { name, slug, categoryId, shortDescription, rawStock, visible, active } = parseProductFormData(formData);
   if (!name || !categoryId || !shortDescription || !rawStock) redirect(`/admin/productos/${id}/editar?status=missing-fields`);
 
-  const stock = Number.parseInt(rawStock, 10);
-  if (Number.isNaN(stock) || stock < 0) redirect(`/admin/productos/${id}/editar?status=invalid-stock`);
+  const stock = parseStock(rawStock);
+  if (stock === null) redirect(`/admin/productos/${id}/editar?status=invalid-stock`);
 
   let existingProduct;
   try {
