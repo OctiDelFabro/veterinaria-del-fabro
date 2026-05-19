@@ -164,10 +164,6 @@ export async function getPublicProducts(): Promise<PublicProduct[]> {
       orderBy: { createdAt: "asc" },
     });
 
-    if (products.length === 0) {
-      return fallbackPublicProducts;
-    }
-
     return products.map((product) => ({
       id: product.id,
       name: product.nombre,
@@ -194,9 +190,7 @@ export async function getPublicProductBySlug(slug: string): Promise<PublicProduc
       include: { categoria: true },
     });
 
-    if (!product) {
-      return fallbackPublicProducts.find((fallbackProduct) => fallbackProduct.slug === slug);
-    }
+    if (!product) return undefined;
 
     return {
       id: product.id,
@@ -223,10 +217,6 @@ export async function getAdminProducts(): Promise<AdminProduct[]> {
       include: { categoria: true },
       orderBy: { createdAt: "asc" },
     });
-
-    if (products.length === 0) {
-      return fallbackAdminProducts;
-    }
 
     return products.map((product) => ({
       id: product.id,
@@ -257,9 +247,7 @@ export async function getAdminProductById(id: string): Promise<AdminProduct | un
       include: { categoria: true },
     });
 
-    if (!product) {
-      return fallbackAdminProducts.find((fallbackProduct) => fallbackProduct.id === id);
-    }
+    if (!product) return undefined;
 
     return {
       id: product.id,
