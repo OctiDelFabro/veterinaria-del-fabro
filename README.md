@@ -96,3 +96,12 @@ npm run db:push
 npm run db:seed
 npm run db:studio
 ```
+
+Para gestionar productos desde el panel admin:
+
+- `DATABASE_URL` debe estar configurada.
+- El usuario debe iniciar sesión con Supabase Auth.
+- El email debe estar incluido en `ADMIN_EMAILS`.
+- Las imágenes se integrarán luego con Supabase Storage.
+
+No usar `service_role`.

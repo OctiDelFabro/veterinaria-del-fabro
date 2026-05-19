@@ -1,33 +1,38 @@
-import Link from "next/link";
-
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
+import { AdminProductForm } from "@/components/admin/products/AdminProductForm";
 import { AdminProductTable } from "@/components/admin/products/AdminProductTable";
+import { createProduct } from "@/app/(admin)/admin/productos/actions";
+import { getAdminCategories } from "@/lib/categories";
 import { getAdminProducts } from "@/lib/products";
 
-export default async function AdminProductosPage() {
+const statusMessages: Record<string, string> = {
+  created: "Producto creado correctamente.",
+  updated: "Producto actualizado correctamente.",
+  config: "No hay base de datos configurada para guardar cambios.",
+  "missing-fields": "Completá los campos obligatorios.",
+  "invalid-stock": "El stock debe ser un número entero mayor o igual a cero.",
+  "invalid-category": "Seleccioná una categoría válida.",
+  duplicate: "Ya existe un producto con ese nombre o slug.",
+  "not-found": "El producto solicitado no existe.",
+  error: "Ocurrió un error al guardar el producto.",
+};
+
+export default async function AdminProductosPage({ searchParams }: { searchParams?: Promise<{ status?: string }> }) {
+  const params = await searchParams;
   const products = await getAdminProducts();
+  const categories = await getAdminCategories();
+  const isPersistenceEnabled = Boolean(process.env.DATABASE_URL);
+  const statusMessage = params?.status ? statusMessages[params.status] : undefined;
 
   return (
     <div className="space-y-6">
-      <AdminPageHeader
-        title="Gestión de productos"
-        description="Desde esta sección se podrán crear, editar, ocultar y administrar productos del catálogo."
-      />
-
-      <div className="flex justify-start">
-        <Link
-          href="/admin/productos/nuevo"
-          className="rounded-md bg-veterinarian-violet px-4 py-2 text-sm font-medium text-white transition hover:bg-veterinarian-violetDark"
-        >
-          Nuevo producto
-        </Link>
-      </div>
-
+      <AdminPageHeader title="Gestión de productos" description="Creá y administrá los productos del catálogo público." />
       <p className="rounded-xl border border-veterinarian-blueSoft bg-veterinarian-blueSoft/50 px-4 py-3 text-sm text-slate-700">
-        Los cambios todavía no se guardan en base de datos. Esta pantalla es una interfaz inicial.
+        {isPersistenceEnabled ? "Los cambios se guardan en la base de datos." : "Modo visual: no hay DATABASE_URL configurada en este entorno."}
       </p>
-
-      <AdminProductTable products={products} />
+      {statusMessage ? <p className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">{statusMessage}</p> : null}
+      <AdminProductForm mode="create" action={createProduct} categories={categories} isPersistenceEnabled={isPersistenceEnabled} />
+      <AdminProductTable products={products} isPersistenceEnabled={isPersistenceEnabled} />
     </div>
   );
 }
