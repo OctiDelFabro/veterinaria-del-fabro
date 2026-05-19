@@ -15,6 +15,7 @@ export type AdminProduct = {
   name: string;
   slug: string;
   category: string;
+  categoryId: string;
   shortDescription: string;
   stock: number;
   visible: boolean;
@@ -133,8 +134,20 @@ export const fallbackPublicProducts: PublicProduct[] = [
   },
 ];
 
+const fallbackCategoryIdByName: Record<string, string> = {
+  Alimentos: "alimentos",
+  Medicamentos: "medicamentos",
+  "Pipetas y Antiparasitarios": "pipetas-y-antiparasitarios",
+  Accesorios: "accesorios",
+  Higiene: "higiene",
+  Juguetes: "juguetes",
+  Petshop: "petshop",
+  Otros: "otros",
+};
+
 export const fallbackAdminProducts: AdminProduct[] = fallbackPublicProducts.map((product) => ({
   ...product,
+  categoryId: fallbackCategoryIdByName[product.category] ?? "otros",
   visible: product.id === "p4" || product.id === "p8" ? false : true,
   active: product.id === "p5" || product.id === "p8" ? false : true,
 }));
@@ -225,6 +238,7 @@ export async function getAdminProducts(): Promise<AdminProduct[]> {
       visible: product.visible,
       active: product.activo,
       category: product.categoria.nombre,
+      categoryId: product.categoriaId,
     }));
   } catch (error) {
     console.error("Error loading admin products from database:", error);
@@ -257,6 +271,7 @@ export async function getAdminProductById(id: string): Promise<AdminProduct | un
       visible: product.visible,
       active: product.activo,
       category: product.categoria.nombre,
+      categoryId: product.categoriaId,
     };
   } catch (error) {
     console.error("Error loading admin product by id from database:", error);
