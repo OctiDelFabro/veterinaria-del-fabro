@@ -12,8 +12,6 @@ export function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/catalogo/${product.slug}`}
-      target="_blank"
-      rel="noopener noreferrer"
       className="block overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm transition hover:shadow-md"
     >
       <article>

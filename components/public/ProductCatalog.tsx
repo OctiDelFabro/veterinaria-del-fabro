@@ -53,7 +53,15 @@ export function ProductCatalog({ products, categories }: ProductCatalogProps) {
         </div>
       </div>
 
-      {filteredProducts.length === 0 ? (
+      {products.length === 0 ? (
+        <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+          <p className="text-base font-semibold text-slate-800">No hay productos disponibles por el momento.</p>
+          <p className="mt-2 text-sm text-slate-600">Podés consultarnos por WhatsApp para verificar disponibilidad.</p>
+          <div className="mt-4">
+            <WhatsAppButton message="Hola, quería consultar por los productos disponibles actualmente." />
+          </div>
+        </div>
+      ) : filteredProducts.length === 0 ? (
         <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm">
           <p className="text-base font-semibold text-slate-800">No encontramos productos con ese nombre.</p>
           <p className="mt-2 text-sm text-slate-600">Podés consultarnos por WhatsApp para verificar disponibilidad.</p>

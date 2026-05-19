@@ -17,6 +17,13 @@ const statusMessages: Record<string, string> = {
   error: "Ocurrió un error al guardar el producto.",
 };
 
+const getStatusClassName = (status?: string) => {
+  if (!status) return "border-slate-200 bg-white text-slate-700";
+  if (["created", "updated", "success"].includes(status)) return "border-emerald-200 bg-emerald-50 text-emerald-900";
+  if (status === "config") return "border-sky-200 bg-sky-50 text-sky-900";
+  return "border-rose-200 bg-rose-50 text-rose-900";
+};
+
 export default async function AdminProductosEditarPage({
   params,
   searchParams,
@@ -46,7 +53,7 @@ export default async function AdminProductosEditarPage({
   return (
     <div className="space-y-6">
       <AdminPageHeader title="Editar producto" description="Modificá los datos del producto seleccionado." />
-      {statusMessage ? <p className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">{statusMessage}</p> : null}
+      {statusMessage ? <p className={`rounded-xl border px-4 py-3 text-sm ${getStatusClassName(paramsSearch?.status)}`}>{statusMessage}</p> : null}
       <AdminProductForm mode="edit" initialData={product} action={updateProductWithId} categories={categories} isPersistenceEnabled={isPersistenceEnabled} />
       <Link href="/admin/productos" className="inline-block text-sm font-medium text-veterinarian-blue hover:underline">Volver a gestión de productos</Link>
     </div>

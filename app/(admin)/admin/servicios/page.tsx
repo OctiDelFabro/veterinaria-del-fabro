@@ -14,6 +14,13 @@ const statusMessages: Record<string, string> = {
   error: "Ocurrió un error al guardar el servicio.",
 };
 
+const getStatusClassName = (status?: string) => {
+  if (!status) return "border-slate-200 bg-white text-slate-700";
+  if (["created", "updated", "success"].includes(status)) return "border-emerald-200 bg-emerald-50 text-emerald-900";
+  if (status === "config") return "border-sky-200 bg-sky-50 text-sky-900";
+  return "border-rose-200 bg-rose-50 text-rose-900";
+};
+
 export default async function AdminServiciosPage({
   searchParams,
 }: {
@@ -32,12 +39,12 @@ export default async function AdminServiciosPage({
       />
 
       {statusMessage ? (
-        <section className="rounded-xl border border-veterinarian-blueSoft/60 bg-veterinarian-blueSoft/20 p-5 shadow-sm">
+        <section className={`rounded-xl border p-5 shadow-sm ${getStatusClassName(params?.status)}`}>
           <p className="text-sm text-slate-700">{statusMessage}</p>
         </section>
       ) : null}
 
-      <section className="rounded-xl border border-veterinarian-blueSoft/60 bg-veterinarian-blueSoft/20 p-5 shadow-sm">
+      <section className={`rounded-xl border p-5 shadow-sm ${getStatusClassName(params?.status)}`}>
         <p className="text-sm text-slate-700">
           {isPersistenceEnabled
             ? "Los cambios se guardan en la base de datos."
