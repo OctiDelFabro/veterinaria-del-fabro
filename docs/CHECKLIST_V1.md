@@ -4,8 +4,8 @@
 - [x] Next.js App Router configurado
 - [x] TypeScript configurado
 - [x] Tailwind configurado
-- [x] Rutas públicas placeholder
-- [x] Rutas admin placeholder
+- [x] Rutas públicas implementadas
+- [x] Rutas admin implementadas
 - [x] Layout público
 - [x] Layout admin
 - [x] Login separado del layout admin
@@ -42,11 +42,11 @@
 - [x] Gestión de servicios
 - [x] Configuración del negocio
 
-Nota: UI inicial de productos implementada con datos mock; pendiente CRUD real.
+Nota: Gestión real de productos implementada con Prisma: crear, editar, mostrar/ocultar y activar/desactivar. Imágenes integradas con Supabase Storage. No se implementa eliminación.
 Nota: Gestión real de categorías implementada con Prisma: crear, editar, mostrar/ocultar y activar/desactivar. No se implementa eliminación.
 Nota: Gestión real de servicios implementada con Prisma: crear, editar, mostrar/ocultar y activar/desactivar. No se implementa eliminación.
-Nota: Gestión real de productos implementada con Prisma: crear, editar, mostrar/ocultar y activar/desactivar. No se implementa eliminación ni carga de imágenes.
 Nota: Configuración del negocio con persistencia real mediante Prisma; protegida por Supabase Auth.
+Nota: Rutas /admin protegidas con Supabase Auth y lista ADMIN_EMAILS.
 
 ## Base de datos
 - [x] Prisma configurado
@@ -57,10 +57,10 @@ Nota: Configuración del negocio con persistencia real mediante Prisma; protegid
 - [x] Modelo AdminProfile
 - [x] Seed inicial
 
-Nota: Contacto público conectado a configuracion_negocio mediante Prisma con fallback estático.
-Nota: Categorías públicas y administrativas conectadas a Prisma con fallback estático.
-Nota: Servicios públicos y administrativos conectados a Prisma con fallback estático.
-Nota: Productos públicos y administrativos conectados a Prisma con fallback estático.
+Nota: Contacto público conectado a configuracion_negocio mediante Prisma.
+Nota: Categorías públicas y administrativas conectadas a Prisma.
+Nota: Servicios públicos y administrativos conectados a Prisma.
+Nota: Productos públicos y administrativos conectados a Prisma.
 
 ## Integraciones
 - [x] Supabase Auth
@@ -78,7 +78,6 @@ Nota: Productos públicos y administrativos conectados a Prisma con fallback est
 - [x] Revisión de rutas admin
 - [x] Revisión visual general
 
-Nota: Rutas /admin protegidas con Supabase Auth y lista ADMIN_EMAILS; CRUD real pendiente.
 Nota: Imágenes de productos integradas con Supabase Storage. Pendiente eliminación de archivos antiguos del bucket.
 
 Nota final: Revisión final visual y de estados vacíos realizada. Pendiente: eliminación de archivos antiguos del bucket y mejoras futuras.
