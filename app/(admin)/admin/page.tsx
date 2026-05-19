@@ -1,8 +1,15 @@
 import { AdminActionCard } from "@/components/admin/AdminActionCard";
 import { AdminPageHeader } from "@/components/admin/AdminPageHeader";
 import { AdminStatCard } from "@/components/admin/AdminStatCard";
+import { getAdminCategories } from "@/lib/categories";
+import { getAdminProducts } from "@/lib/products";
+import { getAdminServices } from "@/lib/services";
 
-export default function AdminHomePage() {
+export default async function AdminHomePage() {
+  const products = await getAdminProducts();
+  const categories = await getAdminCategories();
+  const services = await getAdminServices();
+
   return (
     <div className="space-y-8">
       <AdminPageHeader
@@ -11,9 +18,9 @@ export default function AdminHomePage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <AdminStatCard title="Productos" value="12" description="Productos mock" />
-        <AdminStatCard title="Categorías" value="8" description="Categorías cargadas" />
-        <AdminStatCard title="Servicios" value="3" description="Servicios iniciales" />
+        <AdminStatCard title="Productos" value={String(products.length)} description="Productos cargados" />
+        <AdminStatCard title="Categorías" value={String(categories.length)} description="Categorías cargadas" />
+        <AdminStatCard title="Servicios" value={String(services.length)} description="Servicios cargados" />
         <AdminStatCard title="Estado del sitio" value="Vista pública activa" />
       </section>
 
