@@ -12,6 +12,8 @@ const statusMessages: Record<string, string> = {
   "missing-fields": "Completá los campos obligatorios.",
   "invalid-stock": "El stock debe ser un número entero mayor o igual a cero.",
   "invalid-category": "Seleccioná una categoría válida.",
+  "invalid-image": "La imagen debe ser JPG, PNG o WebP y pesar hasta 3 MB.",
+  "image-error": "Ocurrió un error al subir la imagen.",
   error: "Ocurrió un error al guardar el producto.",
 };
 

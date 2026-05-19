@@ -19,9 +19,13 @@ export function ProductCard({ product }: ProductCardProps) {
       <article>
         <div className="relative h-48 overflow-hidden bg-slate-100">
           <StockRibbon stock={product.stock} />
-          <div className="flex h-full items-center justify-center px-4 text-center text-sm text-slate-500">
-            {product.imageUrl ? "Imagen de producto" : "Imagen no disponible"}
-          </div>
+          {product.imageUrl ? (
+            <img src={product.imageUrl} alt={`Imagen de ${product.name}`} className="h-full w-full object-cover" />
+          ) : (
+            <div className="flex h-full items-center justify-center px-4 text-center text-sm text-slate-500">
+              Imagen no disponible
+            </div>
+          )}
         </div>
         <div className="p-4">
           <h3 className="text-sm font-semibold text-slate-800 sm:text-base">{product.name}</h3>

@@ -64,7 +64,7 @@ Nota: Productos públicos y administrativos conectados a Prisma con fallback est
 
 ## Integraciones
 - [x] Supabase Auth
-- [ ] Supabase Storage
+- [x] Supabase Storage
 - [x] WhatsApp links
 - [x] Instagram link
 - [x] Google Maps link
@@ -79,3 +79,4 @@ Nota: Productos públicos y administrativos conectados a Prisma con fallback est
 - [ ] Revisión visual general
 
 Nota: Rutas /admin protegidas con Supabase Auth y lista ADMIN_EMAILS; CRUD real pendiente.
+Nota: Imágenes de productos integradas con Supabase Storage. Pendiente eliminación de archivos antiguos del bucket.

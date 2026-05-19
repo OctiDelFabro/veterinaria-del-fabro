@@ -13,6 +13,8 @@ const statusMessages: Record<string, string> = {
   "invalid-stock": "El stock debe ser un número entero mayor o igual a cero.",
   "invalid-category": "Seleccioná una categoría válida.",
   duplicate: "Ya existe un producto con ese nombre o slug.",
+  "invalid-image": "La imagen debe ser JPG, PNG o WebP y pesar hasta 3 MB.",
+  "image-error": "Ocurrió un error al subir la imagen.",
   "not-found": "El producto solicitado no existe.",
   error: "Ocurrió un error al guardar el producto.",
 };
