@@ -31,8 +31,12 @@ export default async function CatalogoDetallePage({ params }: CatalogDetailProps
   return (
     <section className="container-main py-10 sm:py-12">
       <div className="grid gap-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:grid-cols-2">
-        <div className="flex min-h-72 items-center justify-center rounded-xl bg-slate-100 px-4 text-center text-sm text-slate-500">
-          {product.imageUrl ? "Imagen de producto" : "Imagen no disponible"}
+        <div className="flex min-h-72 items-center justify-center overflow-hidden rounded-xl bg-slate-100 px-4 text-center text-sm text-slate-500">
+          {product.imageUrl ? (
+            <img src={product.imageUrl} alt={`Imagen de ${product.name}`} className="h-full w-full rounded-xl object-cover" />
+          ) : (
+            "Imagen no disponible"
+          )}
         </div>
 
         <div className="space-y-4">

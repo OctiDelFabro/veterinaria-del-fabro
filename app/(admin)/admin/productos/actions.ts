@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import { requireAdminUser } from "@/lib/auth/admin";
 import { prisma } from "@/lib/prisma";
 import { generateSlug } from "@/lib/slug";
+import { hasSupabaseServerConfig } from "@/lib/supabase/server";
+import { uploadProductImage } from "@/lib/supabase/storage";
 
 function parseProductFormData(formData: FormData) {
   const name = String(formData.get("name") ?? "").trim();
@@ -13,6 +15,7 @@ function parseProductFormData(formData: FormData) {
   const categoryId = String(formData.get("categoryId") ?? "").trim();
   const shortDescription = String(formData.get("shortDescription") ?? "").trim();
   const rawStock = String(formData.get("stock") ?? "").trim();
+  const imageFile = formData.get("imageFile");
 
   return {
     name,
@@ -20,6 +23,7 @@ function parseProductFormData(formData: FormData) {
     categoryId,
     shortDescription,
     rawStock,
+    imageFile,
     visible: formData.get("visible") === "on",
     active: formData.get("active") === "on",
   };
@@ -38,7 +42,7 @@ export async function createProduct(formData: FormData): Promise<void> {
   await requireAdminUser();
   if (!process.env.DATABASE_URL) redirect("/admin/productos?status=config");
 
-  const { name, slug, categoryId, shortDescription, rawStock, visible, active } = parseProductFormData(formData);
+  const { name, slug, categoryId, shortDescription, rawStock, imageFile, visible, active } = parseProductFormData(formData);
   if (!name || !categoryId || !shortDescription || !rawStock) redirect("/admin/productos?status=missing-fields");
 
   const stock = parseStock(rawStock);
@@ -64,6 +68,24 @@ export async function createProduct(formData: FormData): Promise<void> {
 
   if (duplicate) redirect("/admin/productos?status=duplicate");
 
+  let imagenUrl: string | null = null;
+  if (imageFile instanceof File && imageFile.size > 0) {
+    if (!hasSupabaseServerConfig()) {
+      redirect("/admin/productos?status=image-error");
+    }
+
+    try {
+      imagenUrl = await uploadProductImage({ file: imageFile, productSlug: slug });
+    } catch (error) {
+      if (error instanceof Error && error.message === "Invalid product image") {
+        redirect("/admin/productos?status=invalid-image");
+      }
+
+      console.error("Error uploading product image", error);
+      redirect("/admin/productos?status=image-error");
+    }
+  }
+
   try {
     await prisma.producto.create({
       data: {
@@ -71,7 +93,7 @@ export async function createProduct(formData: FormData): Promise<void> {
         slug,
         descripcionBreve: shortDescription,
         stock,
-        imagenUrl: null,
+        imagenUrl,
         visible,
         activo: active,
         categoriaId: categoryId,
@@ -93,7 +115,7 @@ export async function updateProduct(id: string, formData: FormData): Promise<voi
   await requireAdminUser();
   if (!process.env.DATABASE_URL) redirect("/admin/productos?status=config");
 
-  const { name, slug, categoryId, shortDescription, rawStock, visible, active } = parseProductFormData(formData);
+  const { name, slug, categoryId, shortDescription, rawStock, imageFile, visible, active } = parseProductFormData(formData);
   if (!name || !categoryId || !shortDescription || !rawStock) redirect(`/admin/productos/${id}/editar?status=missing-fields`);
 
   const stock = parseStock(rawStock);
@@ -129,6 +151,24 @@ export async function updateProduct(id: string, formData: FormData): Promise<voi
 
   if (duplicate) redirect(`/admin/productos/${id}/editar?status=duplicate`);
 
+  let imagenUrl: string | undefined;
+  if (imageFile instanceof File && imageFile.size > 0) {
+    if (!hasSupabaseServerConfig()) {
+      redirect(`/admin/productos/${id}/editar?status=image-error`);
+    }
+
+    try {
+      imagenUrl = await uploadProductImage({ file: imageFile, productSlug: slug });
+    } catch (error) {
+      if (error instanceof Error && error.message === "Invalid product image") {
+        redirect(`/admin/productos/${id}/editar?status=invalid-image`);
+      }
+
+      console.error("Error uploading product image", error);
+      redirect(`/admin/productos/${id}/editar?status=image-error`);
+    }
+  }
+
   try {
     await prisma.producto.update({
       where: { id },
@@ -140,6 +180,7 @@ export async function updateProduct(id: string, formData: FormData): Promise<voi
         visible,
         activo: active,
         categoriaId: categoryId,
+        ...(imagenUrl ? { imagenUrl } : {}),
       },
     });
   } catch (error) {

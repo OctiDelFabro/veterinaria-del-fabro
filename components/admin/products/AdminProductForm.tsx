@@ -54,6 +54,21 @@ export function AdminProductForm({ mode, initialData, categories, action, isPers
           <input name="stock" type="number" min="0" step="1" required defaultValue={initialData?.stock ?? 0} className="w-full rounded-md border border-slate-300 px-3 py-2" />
         </label>
 
+        <div className="space-y-2 rounded-lg border border-slate-200 p-4">
+          <h3 className="text-sm font-medium text-slate-800">Imagen del producto</h3>
+          {initialData?.imageUrl ? (
+            <div className="space-y-2">
+              <p className="text-xs font-medium text-slate-600">Imagen actual</p>
+              <img src={initialData.imageUrl} alt={`Imagen actual de ${initialData.name}`} className="h-28 w-28 rounded-md border border-slate-200 object-cover" />
+            </div>
+          ) : null}
+          <label className="space-y-1 text-sm text-slate-700">
+            <span className="font-medium">Cargar imagen</span>
+            <input type="file" name="imageFile" accept="image/jpeg,image/png,image/webp" className="block w-full text-sm" />
+          </label>
+          <p className="text-xs text-slate-500">Formatos permitidos: JPG, PNG o WebP. Tamaño máximo: 3 MB.</p>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2">
           <label className="flex items-center gap-2 rounded-md border border-slate-200 p-3 text-sm text-slate-700">
             <input name="visible" type="checkbox" defaultChecked={initialData?.visible ?? true} className="h-4 w-4" />
@@ -66,7 +81,7 @@ export function AdminProductForm({ mode, initialData, categories, action, isPers
         </div>
 
         <p className="rounded-md border border-veterinarian-blueSoft bg-veterinarian-blueSoft/40 px-3 py-2 text-sm text-slate-700">
-          Las imágenes se integrarán en una próxima etapa con Supabase Storage.
+          Si cargás una nueva imagen, reemplazará la imagen visible del producto. No se elimina la imagen anterior del bucket en esta etapa.
         </p>
 
         {!isPersistenceEnabled ? (

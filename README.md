@@ -102,6 +102,19 @@ Para gestionar productos desde el panel admin:
 - `DATABASE_URL` debe estar configurada.
 - El usuario debe iniciar sesión con Supabase Auth.
 - El email debe estar incluido en `ADMIN_EMAILS`.
-- Las imágenes se integrarán luego con Supabase Storage.
 
 No usar `service_role`.
+
+## Product image storage setup
+
+Para habilitar imágenes de productos:
+
+1. Crear un bucket en Supabase Storage llamado `product-images`.
+2. El bucket puede ser público para poder usar URLs públicas.
+3. Configurar policies para permitir operaciones de usuarios autenticados en ese bucket.
+4. En `.env` se puede definir: `SUPABASE_PRODUCT_IMAGES_BUCKET="product-images"`.
+
+Aclaraciones:
+
+- No usar `service_role`.
+- La acción server-side valida que el usuario sea admin con Supabase Auth y `ADMIN_EMAILS` antes de subir imágenes.
