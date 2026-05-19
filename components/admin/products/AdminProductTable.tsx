@@ -10,6 +10,14 @@ type AdminProductTableProps = {
 };
 
 export function AdminProductTable({ products, isPersistenceEnabled }: AdminProductTableProps) {
+  if (products.length === 0) {
+    return (
+      <div className="rounded-xl border border-slate-200 bg-white p-6 text-center shadow-sm">
+        <p className="text-sm font-medium text-slate-800">No hay productos cargados todavía.</p>
+      </div>
+    );
+  }
+
   return (
     <div className="rounded-xl border border-slate-200 bg-white shadow-sm">
       <div className="hidden overflow-x-auto md:block">

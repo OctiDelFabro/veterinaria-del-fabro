@@ -19,6 +19,13 @@ const statusMessages: Record<string, string> = {
   error: "Ocurrió un error al guardar el producto.",
 };
 
+const getStatusClassName = (status?: string) => {
+  if (!status) return "border-slate-200 bg-white text-slate-700";
+  if (["created", "updated", "success"].includes(status)) return "border-emerald-200 bg-emerald-50 text-emerald-900";
+  if (status === "config") return "border-sky-200 bg-sky-50 text-sky-900";
+  return "border-rose-200 bg-rose-50 text-rose-900";
+};
+
 export default async function AdminProductosPage({ searchParams }: { searchParams?: Promise<{ status?: string }> }) {
   const params = await searchParams;
   const products = await getAdminProducts();
@@ -32,7 +39,7 @@ export default async function AdminProductosPage({ searchParams }: { searchParam
       <p className="rounded-xl border border-veterinarian-blueSoft bg-veterinarian-blueSoft/50 px-4 py-3 text-sm text-slate-700">
         {isPersistenceEnabled ? "Los cambios se guardan en la base de datos." : "Modo visual: no hay DATABASE_URL configurada en este entorno."}
       </p>
-      {statusMessage ? <p className="rounded-xl border border-slate-200 bg-white px-4 py-3 text-sm text-slate-700">{statusMessage}</p> : null}
+      {statusMessage ? <p className={`rounded-xl border px-4 py-3 text-sm ${getStatusClassName(params?.status)}`}>{statusMessage}</p> : null}
       <AdminProductForm mode="create" action={createProduct} categories={categories} isPersistenceEnabled={isPersistenceEnabled} />
       <AdminProductTable products={products} isPersistenceEnabled={isPersistenceEnabled} />
     </div>

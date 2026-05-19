@@ -74,9 +74,11 @@ Nota: Productos públicos y administrativos conectados a Prisma con fallback est
 - [ ] npm run build
 - [ ] npm run lint
 - [ ] Revisión responsive mobile
-- [ ] Revisión de rutas públicas
-- [ ] Revisión de rutas admin
-- [ ] Revisión visual general
+- [x] Revisión de rutas públicas
+- [x] Revisión de rutas admin
+- [x] Revisión visual general
 
 Nota: Rutas /admin protegidas con Supabase Auth y lista ADMIN_EMAILS; CRUD real pendiente.
 Nota: Imágenes de productos integradas con Supabase Storage. Pendiente eliminación de archivos antiguos del bucket.
+
+Nota final: Revisión final visual y de estados vacíos realizada. Pendiente: eliminación de archivos antiguos del bucket y mejoras futuras.

@@ -14,6 +14,13 @@ const statusMessages: Record<string, string> = {
   unauthorized: "No tenés permisos para realizar esta acción.",
 };
 
+const getStatusClassName = (status?: string) => {
+  if (!status) return "border-slate-200 bg-white text-slate-700";
+  if (["created", "updated", "success"].includes(status)) return "border-emerald-200 bg-emerald-50 text-emerald-900";
+  if (status === "config") return "border-sky-200 bg-sky-50 text-sky-900";
+  return "border-rose-200 bg-rose-50 text-rose-900";
+};
+
 export default async function AdminConfiguracionPage({
   searchParams,
 }: {
@@ -38,7 +45,7 @@ export default async function AdminConfiguracionPage({
       </section>
 
       {statusMessage ? (
-        <section className="rounded-xl border border-veterinarian-blueSoft/60 bg-white p-4 text-sm text-slate-700 shadow-sm">{statusMessage}</section>
+        <section className={`rounded-xl border p-4 text-sm shadow-sm ${getStatusClassName(params?.status)}`}>{statusMessage}</section>
       ) : null}
 
       <div className="grid gap-6 xl:grid-cols-[minmax(0,2fr)_minmax(0,1fr)]">
